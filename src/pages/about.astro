@@ -4,14 +4,20 @@ import Content from '~/components/widgets/Content.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
 import { lifetimeDeal } from '~/data/pricingData';
-const metadata = { title: 'Our Mission | Schedule.Hair', description: 'Why your salon deserves a professional vanity URL and a high-end booking experience.' };
+
+const metadata = { 
+  title: 'Our Mission | Schedule.Hair', 
+  description: 'Why your salon deserves a professional vanity URL and a high-end booking experience.' 
+};
 ---
+
 <Layout metadata={metadata}>
   <Hero2
     tagline="The Professional Standard"
     title='More Than Just a <span class="text-accent">Schedule Button</span>'
     subtitle="When a client sees your salon on Google, that blue 'Schedule' button is their first point of contact. We make sure that click leads to a premium branded experience, not a generic spreadsheet."
     actions={[{ variant: 'primary', text: 'Secure My URL', href: '/pricing/' }]}
+    image={{ src: '/images/hero-poster.webp', alt: 'Schedule.Hair Professional Branding' }}
   />
   
   <Content
