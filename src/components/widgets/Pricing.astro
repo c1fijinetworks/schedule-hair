@@ -1,0 +1,151 @@
+---
+import { Icon } from 'astro-icon/components';
+import Button from '~/components/ui/Button.astro';
+import Headline from '~/components/ui/Headline.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import type { Price } from '~/types';
+
+const {
+  title,
+  subtitle,
+  tagline,
+  prices = [],
+  classes = {},
+  ...rest
+} = Astro.props;
+---
+
+<WidgetWrapper
+  {...rest}
+  id="pricing"
+  classes={{ container: 'max-w-7xl scroll-mt-16', ...classes.container }}
+  hasBackground
+>
+  <Headline {title} {subtitle} {tagline} classes={{ headline: 'max-w-3xl' }}>
+    <slot name="title" slot="title" />
+    <slot name="subtitle" slot="subtitle" />
+  </Headline>
+  
+  <div
+    class:list={[
+      'gap-8',
+      {
+        'flex justify-center': prices.length === 1,
+        'grid sm:grid-cols-2 lg:grid-cols-3': prices.length > 1,
+      },
+      classes?.grid,
+    ]}
+  >
+    {
+      prices.map((price) => (
+        <div
+          class:list={[
+            'relative overflow-visible flex flex-col rounded-lg border-2 p-8 text-center shadow-lg',
+            {
+              'border-primary': price.hasRibbon,
+              'border-gray-200 dark:border-slate-800': !price.hasRibbon,
+              'w-full max-w-lg': prices.length === 1,
+            },
+          ]}
+        >
+          {
+            price.hasRibbon && (
+              <div class="absolute right-[-5px] rtl:right-auto rtl:left-[-5px] top-[-5px] z-10">
+                <div class="w-48 h-[48px] overflow-visible">
+                  <div class="relative h-full">
+                    <div class="absolute w-full h-full bg-green-600 rotate-45 right-[-60px] rtl:right-auto rtl:left-[-60px] top-[14px]" />
+                    <div class="absolute text-white font-bold right-[6px] rtl:right-auto rtl:left-[6px] top-[14px] text-sm">
+                      {price.ribbonTitle}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          }
+
+          <h3 class="text-2xl font-bold">{price.title}</h3>
+          {price.subtitle && <p class="mt-4 text-muted">{price.subtitle}</p>}
+          <div class="mt-8 flex-1">
+            <div class="flex items-end justify-center">
+              <span class="text-5xl font-bold tracking-tight">${price.price}</span>
+              <span class="ml-1 text-xl font-medium text-muted">/{price.period}</span>
+            </div>
+            {
+              price.items && (
+                <ul role="list" class="mt-8 space-y-4 text-left">
+                  {price.items.map((item) => (
+                    <li class="flex items-start">
+                      <div class="flex-shrink-0">
+                        <Icon name="tabler:circle-check" class="w-6 h-6 text-primary" />
+                      </div>
+                      {item.description && <p class="ml-3 text-base text-muted">{item.description}</p>}
+                    </li>
+                  ))}
+                </ul>
+              )
+            }
+          </div>
+          
+          {/* --- PAYPAL INTEGRATION START --- */}
+          <div class="mt-8">
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_xclick" />
+                
+                <!-- YOUR SECURE MERCHANT ID -->
+                <input type="hidden" name="business" value="ZFG89TK2KESFG" />
+                
+                <!-- FORCE GUEST CHECKOUT / CREDIT CARD VIEW -->
+                <input type="hidden" name="landing_page" value="Billing" />
+                <input type="hidden" name="solution_type" value="Sole" />
+
+                <input type="hidden" name="item_name" value="HairTestimonial QR Review Engine Forever Plan" />
+                <input type="hidden" name="item_number" value="HTFP99" />
+                <input type="hidden" name="amount" value="99.00" />
+                <input type="hidden" name="currency_code" value="USD" />
+                <input type="hidden" name="no_shipping" value="1" />
+                <input type="hidden" name="button_subtype" value="services" />
+                
+                <!-- Custom Field 1: Customer Name -->
+                <div class="text-left mb-3">
+                    <label for="os0" class="block text-sm font-medium mb-1 dark:text-gray-300">Your Name</label>
+                    <input type="hidden" name="on0" value="Customer Name" />
+                    <input 
+                      type="text" 
+                      name="os0" 
+                      required 
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-green-600 focus:border-green-600 dark:bg-slate-900 dark:border-slate-700" 
+                      placeholder="Full Name" 
+                    />
+                </div>
+
+                <!-- Custom Field 2: Salon Name -->
+                <div class="text-left mb-6">
+                    <label for="os1" class="block text-sm font-medium mb-1 dark:text-gray-300">Salon Name</label>
+                    <input type="hidden" name="on1" value="Salon Name" />
+                    <input 
+                      type="text" 
+                      name="os1" 
+                      required 
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-green-600 focus:border-green-600 dark:bg-slate-900 dark:border-slate-700" 
+                      placeholder="Salon Business Name" 
+                    />
+                </div>
+
+                <!-- Submit Button -->
+                <button 
+                  type="submit" 
+                  class="w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg shadow-md transition duration-200"
+                >
+                  {price.callToAction?.text || 'Get Forever Plan - $99'}
+                </button>
+                
+                <p class="text-xs text-muted mt-2">SECURE PAYMENT VIA PAYPAL</p>
+            </form>
+          </div>
+          {/* --- PAYPAL INTEGRATION END --- */}
+
+        </div>
+      ))
+    }
+  </div>
+</WidgetWrapper>
