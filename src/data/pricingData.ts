@@ -1,21 +1,16 @@
 export const lifetimeDeal = {
-  title: 'Lifetime Deal (Limited time)',
-  subtitle: 'Pay once and own it forever.',
+  title: 'Vanity Booking Plan (Lifetime)',
+  subtitle: 'One-time payment for a professional edge.',
   price: 99,
   period: 'One-time payment',
   items: [
-    { description: '60 seconds Testimonial Engine' },
-    { description: 'Full Setup for you!' },
-    { description: 'Automated Testimonial Collection' },
-    { description: 'Beautiful Widget for your Website' },
-    { description: 'No subscription, ever!' },
-    { description: 'Includes All Future Updates' },
-    { description: 'Zero Risk. 100% Satisfaction Guaranteed!' },
+    { description: 'Premium Vanity URL (yoursalon.schedule.hair)' },
+    { description: 'Boutique Branding & Custom Setup' },
+    { description: 'Real-time Calendar & Booking' },
+    { description: 'Mobile-First User Experience' },
+    { description: 'Social & Google Business Integration' },
+    { description: 'No monthly SaaS tax, ever!' },
+    { description: 'White-Glove Tech Support Included' },
   ],
-  callToAction: {
-    target: '_blank' as const,
-    text: 'Get the Forever Plan ( Limited time only )',
-    href: '#', // Add your payment link here
-    variant: 'success', // ADDED THIS LINE
-  },
+  callToAction: { target: '_blank' as const, text: 'Claim My Vanity URL Now', href: '#', variant: 'success' },
 };

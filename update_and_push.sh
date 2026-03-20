@@ -1,3 +1,58 @@
+#!/bin/bash
+
+# 1. Update Navigation and Footer
+cat << 'INNER' > src/navigation.ts
+import { getPermalink } from './utils/permalinks';
+export const headerData = {
+  links: [
+    { text: 'Features', href: getPermalink('/#features') },
+    { text: 'How It Works', href: getPermalink('/#howitworks') },
+    { text: 'The Story', href: getPermalink('/about') },
+    { text: 'Grab Your Vanity URL', href: getPermalink('/pricing') },
+  ],
+  actions: [{ text: 'Get Started - $99', variant: 'primary', href: '/pricing' }],
+};
+export const footerData = {
+  links: [{ title: 'Schedule.Hair', links: [
+    { text: "Claim Your Spot – $99", href: getPermalink('/pricing') },
+    { text: 'Why We Love Salons', href: getPermalink('/about') },
+    { text: 'Support', href: getPermalink('/contact') },
+  ]}],
+  secondaryLinks: [
+    { text: 'Terms of Service', href: getPermalink('/terms') },
+    { text: 'Privacy Policy', href: getPermalink('/privacy') },
+  ],
+  socialLinks: [],
+  footNote: \`
+    <div class="inline-flex items-center justify-center flex-wrap">
+      <img class='w-5 h-5 mr-2 rounded-sm align-middle' src='/images/footer-icon.webp' alt='Schedule Hair' loading='lazy'>
+      <span class="align-middle">✂️ Fill your chairs. | © \${new Date().getFullYear()} <a class="text-blue-600 underline dark:text-muted" href="#">Schedule.Hair</a></span>
+    </div>\`,
+};
+INNER
+
+# 2. Update Pricing Data
+cat << 'INNER' > src/data/pricingData.ts
+export const lifetimeDeal = {
+  title: 'Vanity Booking Plan (Lifetime)',
+  subtitle: 'One-time payment for a professional edge.',
+  price: 99,
+  period: 'One-time payment',
+  items: [
+    { description: 'Premium Vanity URL (yoursalon.schedule.hair)' },
+    { description: 'Boutique Branding & Custom Setup' },
+    { description: 'Real-time Calendar & Booking' },
+    { description: 'Mobile-First User Experience' },
+    { description: 'Social & Google Business Integration' },
+    { description: 'No monthly SaaS tax, ever!' },
+    { description: 'White-Glove Tech Support Included' },
+  ],
+  callToAction: { target: '_blank' as const, text: 'Claim My Vanity URL Now', href: '#', variant: 'success' },
+};
+INNER
+
+# 3. Update Homepage (index.astro)
+cat << 'INNER' > src/pages/index.astro
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Header from '~/components/widgets/Header.astro';
@@ -72,3 +127,45 @@ const metadata = {
     ]}
   />
 </Layout>
+INNER
+
+# 4. Update Announcement
+cat << 'INNER' > src/components/widgets/Announcement.astro
+<div class="dark text-sm bg-black hidden md:flex items-center justify-center overflow-hidden px-3 py-2 relative text-ellipsis whitespace-nowrap">
+  <div class="flex items-center gap-2">
+    <span>✨ </span><span class="text-white font-medium">Claim your professional <strong>yoursalon.schedule.hair</strong> vanity URL today.</span>
+  </div>
+  <div class="absolute right-4 top-0 h-full flex items-center"><span class="text-white font-medium">Same-day setup. Just $99</span></div>
+</div>
+INNER
+
+# 5. Update About Page
+cat << 'INNER' > src/pages/about.astro
+---
+import Hero2 from '~/components/widgets/Hero2.astro';
+import Content from '~/components/widgets/Content.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Pricing from '~/components/widgets/Pricing.astro';
+import { lifetimeDeal } from '~/data/pricingData';
+const metadata = { title: 'Our Story | Schedule.Hair', ignoreTitleTemplate: true };
+---
+<Layout metadata={metadata}>
+  <Hero2 tagline="The Story" title='Elevating the <span class="text-accent">Salon Experience</span>' subtitle="We built Schedule.Hair to eliminate the administrative headache of the beauty industry. You create the art; we build the tech that fills your chair." video="/images/hero-animation.mp4" />
+  <Content items={[{ title: 'Professionalism', description: 'We help stylists stand out in a sea of generic apps.', icon: 'tabler:star' }]} image={{ src: '/images/testimonial-4.webp', alt: 'Salon Artistry' }} />
+  <Pricing prices={[lifetimeDeal]} />
+</Layout>
+INNER
+
+# 6. Update PayPal Fields
+sed -i 's/HairTestimonial QR Review Engine/Schedule.Hair Vanity Booking Engine/g' src/components/widgets/Pricing.astro
+sed -i 's/HTFP99/SHURL99/g' src/components/widgets/Pricing.astro
+
+# 7. Update Metadata on Pricing page
+sed -i 's/review system/booking system/g' src/pages/pricing.astro
+
+# 8. Git Push
+git add .
+git commit -m "Refactor to Schedule.Hair: Vanity URLs and Boutique Booking App Concept"
+git push
+
+echo "SUCCESS: Concept refactored to Schedule.Hair and pushed to Github."
