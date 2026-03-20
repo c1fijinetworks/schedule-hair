@@ -13,32 +13,33 @@ const { title, subtitle, tagline, prices = [], classes = {}, ...rest } = Astro.p
   
   <div class="flex justify-center">
     {prices.map((price) => (
-      <div class="relative overflow-visible flex flex-col rounded-lg border-2 border-primary p-8 text-center shadow-2xl w-full max-w-lg bg-white dark:bg-slate-900">
+      <div class="relative overflow-visible flex flex-col rounded-xl border-2 border-blue-600 p-8 text-center shadow-2xl w-full max-w-lg bg-white dark:bg-slate-900">
         
-        {/* Ribbon for Lifetime Deal */}
-        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-accent text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest">
-            Lifetime Access
+        {/* Ribbon */}
+        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-6 py-1 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
+            Guaranteed Same-Day Setup
         </div>
 
-        <h3 class="text-2xl font-bold mt-2">{price.title}</h3>
+        <h3 class="text-3xl font-black text-slate-900 dark:text-white mt-4">{price.title}</h3>
         
         <div class="mt-8 flex-1">
           <div class="flex items-end justify-center">
-            <span class="text-5xl font-bold tracking-tight text-primary">${price.price}</span>
-            <span class="ml-1 text-xl font-medium text-muted">/ once</span>
+            <span class="text-6xl font-black tracking-tighter text-blue-600">$99</span>
+            <span class="ml-2 text-lg font-bold text-slate-500 uppercase">one-time</span>
           </div>
-          <ul role="list" class="mt-8 space-y-4 text-left">
+          
+          <ul role="list" class="mt-8 space-y-4 text-left border-t border-slate-100 pt-8 dark:border-slate-800">
             {price.items.map((item) => (
               <li class="flex items-start">
-                <Icon name="tabler:circle-check" class="w-6 h-6 text-green-500 flex-shrink-0" />
-                <p class="ml-3 text-base text-muted">{item.description}</p>
+                <Icon name="tabler:circle-check-filled" class="w-6 h-6 text-green-500 flex-shrink-0" />
+                <p class="ml-3 text-base font-bold text-slate-700 dark:text-slate-300">{item.description}</p>
               </li>
             ))}
           </ul>
         </div>
         
-        <div class="mt-10 p-6 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <div class="mt-10 p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 shadow-inner">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
             <input type="hidden" name="cmd" value="_xclick" />
             <input type="hidden" name="business" value="ZFG89TK2KESFG" />
             <input type="hidden" name="item_name" value="Schedule Hair Professional Vanity URL Setup" />
@@ -46,33 +47,36 @@ const { title, subtitle, tagline, prices = [], classes = {}, ...rest } = Astro.p
             <input type="hidden" name="amount" value="99.00" />
             <input type="hidden" name="currency_code" value="USD" />
             
-            <div class="text-left mb-4">
-              <label class="block text-sm font-bold mb-2 text-slate-700 dark:text-gray-300">
+            {/* PAYPAL CHECKOUT OPTIMIZATIONS */}
+            <input type="hidden" name="no_shipping" value="1" />
+            <input type="hidden" name="landing_page" value="billing" />
+            <input type="hidden" name="solution_type" value="sole" />
+
+            <div class="text-left mb-6">
+              <label class="block text-sm font-black uppercase tracking-tight mb-2 text-slate-800 dark:text-gray-200">
                 1. Choose Your Vanity URL
               </label>
-              <div class="relative">
-                <input type="hidden" name="on0" value="Vanity URL" />
-                <input 
-                    type="text" 
-                    id="vanity-input" 
-                    name="os0" 
-                    required 
-                    class="w-full px-4 py-3 border-2 border-slate-300 rounded-lg focus:ring-primary focus:border-primary dark:bg-slate-900 dark:border-slate-600 transition-all font-semibold" 
-                    placeholder="yoursalon" 
-                />
-              </div>
+              <input type="hidden" name="on0" value="Vanity URL" />
+              <input 
+                  type="text" 
+                  id="vanity-input" 
+                  name="os0" 
+                  required 
+                  class="w-full px-4 py-4 border-2 border-slate-300 rounded-xl focus:ring-4 focus:ring-blue-600/20 focus:border-blue-600 dark:bg-slate-900 dark:border-slate-600 transition-all font-bold text-lg" 
+                  placeholder="yoursalon" 
+              />
               
-              {/* IMPROVED PREVIEW UI */}
-              <div class="mt-3 p-3 bg-white dark:bg-slate-950 rounded border border-dashed border-primary/50 flex items-center gap-2 overflow-hidden">
-                <Icon name="tabler:world" class="w-4 h-4 text-primary animate-pulse" />
-                <span class="text-sm font-mono truncate">
-                    <span class="text-slate-400">https://</span><span id="vanity-preview" class="text-primary font-bold">yoursalon</span><span class="text-slate-400">.schedule.hair</span>
+              {/* HIGH CONTRAST PREVIEW */}
+              <div class="mt-3 p-4 bg-white dark:bg-slate-950 rounded-xl border-2 border-dashed border-blue-600/30 flex items-center gap-3">
+                <Icon name="tabler:world" class="w-5 h-5 text-blue-600" />
+                <span class="text-sm font-bold truncate text-slate-600 dark:text-slate-400">
+                    https://<span id="vanity-preview" class="text-blue-600 underline decoration-2 underline-offset-4">yoursalon</span>.schedule.hair
                 </span>
               </div>
             </div>
 
-            <div class="text-left mb-6">
-              <label class="block text-sm font-bold mb-2 text-slate-700 dark:text-gray-300">
+            <div class="text-left mb-8">
+              <label class="block text-sm font-black uppercase tracking-tight mb-2 text-slate-800 dark:text-gray-200">
                 2. Salon Name
               </label>
               <input type="hidden" name="on1" value="Salon Name" />
@@ -80,17 +84,18 @@ const { title, subtitle, tagline, prices = [], classes = {}, ...rest } = Astro.p
                 type="text" 
                 name="os1" 
                 required 
-                class="w-full px-4 py-3 border-2 border-slate-300 rounded-lg dark:bg-slate-900 dark:border-slate-600 transition-all" 
+                class="w-full px-4 py-4 border-2 border-slate-300 rounded-xl focus:ring-4 focus:ring-blue-600/20 focus:border-blue-600 dark:bg-slate-900 dark:border-slate-600 transition-all font-bold text-lg" 
                 placeholder="Business Name" 
               />
             </div>
 
-            <button type="submit" class="w-full py-4 px-4 bg-primary hover:bg-blue-700 text-white font-extrabold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 text-lg">
+            <button type="submit" class="w-full py-5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-200 text-xl uppercase tracking-tighter">
               Secure My URL Today
             </button>
-            <div class="flex items-center justify-center gap-2 mt-4 text-slate-500">
-                <Icon name="tabler:lock" class="w-4 h-4" />
-                <p class="text-xs font-medium uppercase tracking-tighter">Safe One-Time Payment via PayPal</p>
+            
+            <div class="flex items-center justify-center gap-2 mt-6 text-slate-400">
+                <Icon name="tabler:credit-card" class="w-4 h-4" />
+                <p class="text-[10px] font-black uppercase tracking-widest">Secure Checkout (Card or PayPal)</p>
             </div>
           </form>
         </div>
@@ -100,26 +105,17 @@ const { title, subtitle, tagline, prices = [], classes = {}, ...rest } = Astro.p
 </WidgetWrapper>
 
 <script is:inline>
-  function initVanityPreview() {
+  function initVanity() {
     const input = document.getElementById('vanity-input');
     const preview = document.getElementById('vanity-preview');
-    
     if (input && preview) {
-      const update = () => {
-        // Force lowercase, remove spaces and non-alphanumeric
-        let val = input.value.toLowerCase().replace(/[^a-z0-9]/g, '');
+      input.addEventListener('input', (e) => {
+        let val = e.target.value.toLowerCase().replace(/[^a-z0-9]/g, '');
         input.value = val;
         preview.textContent = val || 'yoursalon';
-      };
-
-      input.addEventListener('input', update);
-      // Run once on load to catch browser autofill
-      update();
+      });
     }
   }
-
-  // Ensure it runs even with Astro's View Transitions
-  document.addEventListener('astro:page-load', initVanityPreview);
-  // Fallback for standard loads
-  initVanityPreview();
+  document.addEventListener('astro:page-load', initVanity);
+  initVanity();
 </script>
