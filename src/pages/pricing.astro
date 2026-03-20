@@ -5,37 +5,39 @@ import Pricing from '~/components/widgets/Pricing.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import { lifetimeDeal } from '~/data/pricingData';
-import Hero from '~/components/widgets/Hero.astro';
 
-const metadata = { title: 'Pricing - Schedule.Hair | Save $600/year', description: 'Professional salon booking URLs with zero monthly fees. One-time setup, lifetime hosting.' };
+const metadata = { 
+  title: 'Pricing - Schedule.Hair | Professional Digital Presence', 
+  description: 'Elevate your salon brand with a professional vanity URL. One-time fee for a lifetime of premium bookings.' 
+};
 ---
 <Layout metadata={metadata}>
   <HeroText 
-    tagline="Invest Once. Own It Forever."
-    title="Stop Paying the 'SaaS Tax'." 
-    subtitle="Most booking systems charge $50–$150 every single month. At Schedule.Hair, you pay a flat $99 one-time fee for your vanity URL and boutique booking engine. That is $600+ back in your pocket every year."
+    tagline="Elevate Your Digital Handshake"
+    title="Your Professional Identity, <span class='text-accent'>Perfected.</span>" 
+    subtitle="Generic booking links look temporary. We build you a branded vanity URL that integrates directly with your Google Business Profile 'Schedule' link. Make your first impression count with an experience that signals trust and artistry."
   />
 
   <Pricing prices={[lifetimeDeal]} />
 
   <Features3
-    title="Everything Included in Your $99 License"
+    title="Premium Features Included"
     columns={3}
     items={[
-      { title: 'Vanity URL Setup', description: 'Your own branded address (yoursalon.schedule.hair) for life.', icon: 'tabler:link' },
-      { title: 'GBP Sync Help', description: 'White-glove support to link your URL to Google Business Profile.', icon: 'tabler:brand-google' },
-      { title: 'Boutique Design', description: 'Custom brand colors and logo integration for a luxury feel.', icon: 'tabler:palette' },
-      { title: 'Mobile Optimization', description: 'Ultra-fast loading for clients booking on iPhone or Android.', icon: 'tabler:device-mobile' },
-      { title: 'Unlimited Services', description: 'List everything from quick trims to full balayage packages.', icon: 'tabler:infinity' },
-      { title: 'Lifetime Updates', description: 'All future software improvements included at no extra cost.', icon: 'tabler:refresh' },
+      { title: 'Branded Vanity URL', description: 'A clean, memorable web address (yoursalon.schedule.hair) that belongs to you.', icon: 'tabler:link' },
+      { title: 'Google Business Sync', description: 'Expert help linking your URL to the blue Google "Schedule" button for maximum SEO.', icon: 'tabler:brand-google' },
+      { title: 'Boutique UX', description: 'A mobile-first booking interface designed to look like a luxury salon app.', icon: 'tabler:device-mobile' },
+      { title: 'Unlimited Potential', description: 'Zero caps on appointments, services, or revenue. Your business, your growth.', icon: 'tabler:infinity' },
+      { title: 'Immediate Trust', description: 'Show clients you are an established professional from the very first click.', icon: 'tabler:shield-check' },
+      { title: 'Lifetime Setup', description: 'Pay once, own it forever. We handle hosting and technical maintenance.', icon: 'tabler:tool' },
     ]}
   />
 
   <FAQs
-    title="Pricing Questions"
+    title="Frequently Asked Questions"
     items={[
-        { title: 'Are there really no monthly fees?', description: 'None. We charge for our expertise in setup and professional hosting. Once it is live, you never pay us another dime.', icon: 'tabler:coin' },
-        { title: 'What happens if I change my salon name?', description: 'No problem. We can update your vanity URL for a small maintenance fee, or you can keep your original for life.', icon: 'tabler:settings' },
+        { title: 'How does this help my Google ranking?', description: 'Google prioritizes salons with high-quality, relevant links. A clean schedule.hair domain linked to your profile signals to Google that your digital presence is managed and professional.', icon: 'tabler:trending-up' },
+        { title: 'Can I use this with my existing calendar?', description: 'Yes! We act as your high-end front door. We can link your vanity URL to any existing system or provide you with our own custom calendar interface.', icon: 'tabler:layout' },
     ]}
   />
 </Layout>

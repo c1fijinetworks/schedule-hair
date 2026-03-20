@@ -15,7 +15,7 @@ export const headerData = {
 export const footerData = {
   links: [
     {
-      title: 'Schedule.Hair',
+      title: 'Schedule.Hair — Boutique Booking for Stylists',
       links: [
         { text: "Claim Your Spot – $99", href: getPermalink('/pricing') },
         { text: 'Why We Love Salons', href: getPermalink('/about') },
@@ -28,5 +28,5 @@ export const footerData = {
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
   ],
   socialLinks: [],
-  footNote: '✂️ Fill your chairs. | © ' + new Date().getFullYear() + ' Schedule.Hair',
+  footNote: '✂️ Schedule Hair — Fill Your Chairs on Autopilot. | © ' + new Date().getFullYear() + ' Schedule.Hair',
 };
