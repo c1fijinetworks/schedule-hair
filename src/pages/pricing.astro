@@ -4,100 +4,38 @@ import HeroText from '~/components/widgets/HeroText.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Features3 from '~/components/widgets/Features3.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
 import { lifetimeDeal } from '~/data/pricingData';
 import Hero from '~/components/widgets/Hero.astro';
 
-const metadata = {
-  title: 'Pricing - Schedule Hair | Save $600/year',
-  description: 'The last booking system you will ever buy. One-time $99 payment for a lifetime of 5-star Google reviews. No monthly fees, no hidden costs.',
-  ignoreTitleTemplate: true,
-};
+const metadata = { title: 'Pricing - Schedule.Hair | Save $600/year', description: 'Professional salon booking URLs with zero monthly fees. One-time setup, lifetime hosting.' };
 ---
-
 <Layout metadata={metadata}>
   <HeroText 
-    tagline="The Last Review System You'll Ever Buy ⭐⭐⭐⭐⭐"
-    title="Stop Paying Monthly Fees." 
-    subtitle="Most reputation software charge $50–$150 every single month. We charge a flat $99 one-time fee with total setup. That is $600+ back in your pocket in the first year alone to invest in your salon."
+    tagline="Invest Once. Own It Forever."
+    title="Stop Paying the 'SaaS Tax'." 
+    subtitle="Most booking systems charge $50–$150 every single month. At Schedule.Hair, you pay a flat $99 one-time fee for your vanity URL and boutique booking engine. That is $600+ back in your pocket every year."
   />
 
-  <div class="-mt-16">
-    <Pricing
-      id="pricing"
-      title="Invest Once. Grow Forever."
-      subtitle="Full White-Glove Setup Included. We build the engine; you focus on your clients."
-      prices={[lifetimeDeal]}
-    />
-  </div>
+  <Pricing prices={[lifetimeDeal]} />
 
   <Features3
-    title="What is included in your $99 setup?"
-    subtitle="We handle the heavy lifting so you can stay behind the chair."
+    title="Everything Included in Your $99 License"
     columns={3}
     items={[
-      {
-        title: 'High-Scan Station Signs',
-        description: 'Custom-designed QR code with your Salon brand for your reception station, optimized to capture that "post-haircut glow".',
-        icon: 'tabler:qrcode',
-      },
-      {
-        title: 'Direct Google Maps Sync',
-        description: 'We connect your engine directly to your Google Business Profile to boost your local reviews and SEO ranking.',
-        icon: 'tabler:brand-google',
-      },
-      {
-        title: 'The "Wall of Love" Testimonial Widget',
-        description: 'A beautiful, automated widget for your website that showcases your best 5-star reviews to new visitors.',
-        icon: 'tabler:code',
-      },
-      {
-        title: 'Local SEO Dominance',
-        description: 'Fresh, consistent reviews are the #1 factor for ranking in local search. Our system automates this growth signal for Google.',
-        icon: 'tabler:rocket',
-      },
-      {
-        title: 'Unlimited 5-Star Reviews ⭐⭐⭐⭐⭐',
-        description: 'No "per-review" fees or caps. Collect 10 reviews or 10,000—your price never changes. We want you to capture as many glowing reviews as possible from your happy clients.',
-        icon: 'tabler:infinity',
-      },
-      {
-        title: 'Lifetime Future-Proofing',
-        description: 'Get all future software updates and new features for life at no extra cost. No "Pro" tiers ever.',
-        icon: 'tabler:refresh',
-      },
+      { title: 'Vanity URL Setup', description: 'Your own branded address (yoursalon.schedule.hair) for life.', icon: 'tabler:link' },
+      { title: 'GBP Sync Help', description: 'White-glove support to link your URL to Google Business Profile.', icon: 'tabler:brand-google' },
+      { title: 'Boutique Design', description: 'Custom brand colors and logo integration for a luxury feel.', icon: 'tabler:palette' },
+      { title: 'Mobile Optimization', description: 'Ultra-fast loading for clients booking on iPhone or Android.', icon: 'tabler:device-mobile' },
+      { title: 'Unlimited Services', description: 'List everything from quick trims to full balayage packages.', icon: 'tabler:infinity' },
+      { title: 'Lifetime Updates', description: 'All future software improvements included at no extra cost.', icon: 'tabler:refresh' },
     ]}
   />
 
   <FAQs
-    class="-mt-16 px-6"
-    title="Pricing FAQ"
+    title="Pricing Questions"
     items={[
-        { title: 'Why is it a one-time fee?', description: 'We believe in supporting local artists and small businesses. We prefer to charge a fair setup fee for our labor rather than "renting" you software forever.', icon: 'tabler:coin' },
-        { title: 'What if I am not tech-savvy?', description: 'That is why we are here. We do the setup for you. If you can print a PDF, you are ready. Or, just let us know and we will print and mail your station signs at no cost!', icon: 'tabler:tool' },
-        { title: 'Are there any hidden costs?', description: 'Zero. No maintenance fees, no hosting fees, and no "success" fees. $99 is the total cost for the life of your salon.', icon: 'tabler:check' },
-        { title: 'What if I open a second location?', description: 'Your $99 license covers one Google Maps location. If you expand, <a href="/contact/" style="text-decoration: underline;">Contact us</a> for deep discounts on additional shops!', icon: 'tabler:building-store' },
-    ]}
-  >
-    <Fragment slot="bg"><div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div></Fragment>
-  </FAQs>
-
-  <Hero class="-mt-16">
-    <Fragment slot="image">
-      <img 
-        src="/images/testimonial-5.webp" 
-        alt="Salon professional reviewing 5-star feedback" 
-        class="mx-auto rounded-md w-full shadow-lg"
-        loading="lazy"
-      />
-    </Fragment>
-  </Hero>
-
-  <CallToAction
-    title="Ready to Turn Every 'Big Reveal' Into a Rave Review?"
-    subtitle="Claim your lifetime deal today and have your custom review engine ready for your first client tomorrow morning ⭐⭐⭐⭐⭐"
-    actions={[
-      { variant: 'primary', text: 'Secure My $99 Lifetime Deal', href: '#pricing' },
+        { title: 'Are there really no monthly fees?', description: 'None. We charge for our expertise in setup and professional hosting. Once it is live, you never pay us another dime.', icon: 'tabler:coin' },
+        { title: 'What happens if I change my salon name?', description: 'No problem. We can update your vanity URL for a small maintenance fee, or you can keep your original for life.', icon: 'tabler:settings' },
     ]}
   />
 </Layout>
