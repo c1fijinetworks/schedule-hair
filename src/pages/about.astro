@@ -1,43 +1,87 @@
 ---
+import Hero from '~/components/widgets/Hero.astro';
 import Hero2 from '~/components/widgets/Hero2.astro';
 import Content from '~/components/widgets/Content.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
 import { lifetimeDeal } from '~/data/pricingData';
 
-const metadata = { 
-  title: 'Our Mission | Schedule.Hair', 
-  description: 'Why your salon deserves a professional vanity URL and a high-end booking experience.' 
+const metadata = {
+  title: 'Our Mission - Schedule.Hair | Built for Stylists',
+  description: 'We built Schedule.Hair because hair is art, but business is about trust. Learn how we help stylists dominate Google search.',
+  ignoreTitleTemplate: true,
 };
 ---
 
 <Layout metadata={metadata}>
-  <Hero2
-    tagline="The Professional Standard"
-    title='More Than Just a <span class="text-accent">Schedule Button</span>'
-    subtitle="When a client sees your salon on Google, that blue 'Schedule' button is their first point of contact. We make sure that click leads to a premium branded experience, not a generic spreadsheet."
-    actions={[{ variant: 'primary', text: 'Secure My URL', href: '/pricing/' }]}
-    image={{ src: '/images/hero-poster.webp', alt: 'Schedule.Hair Professional Branding' }}
+<Hero2
+    tagline="The Professional Standard ⭐⭐⭐⭐⭐"
+    title='You Create the Art.<br/><span class="text-accent dark:text-white">We Build Your Digital Handshake.</span>'
+    subtitle="Amazing stylists lose clients to generic booking links. We ensure your digital presence matches your talent. No monthly fees—just a professional, automated system to keep your books full."
+    video="/images/hero-animation.mp4" 
+    poster="/images/hero-poster.webp"
+    actions={[
+      { variant: 'primary', text: 'Claim My Lifetime Access - $99', href: '/pricing/' },
+    ]}
   />
-  
+
   <Content
     isReversed
     items={[
-        { title: 'Custom Vanity Branding', description: 'No generic logos. Your booking page is 100% focused on YOUR salon artistry.', icon: 'tabler:check' },
-        { title: 'Mobile-First Speed', description: 'Load times are 3x faster than traditional booking platforms, preventing client drop-off.', icon: 'tabler:device-mobile' },
-        { title: 'Google SEO Signal', description: 'Custom URLs indexed by Google help your shop climb the local rankings faster.', icon: 'tabler:rocket' },
-        { title: 'Zero Distractions', description: 'We don’t show other salons or "recommended" stylists nearby. We keep the client focused on you.', icon: 'tabler:eye-off' },
-        { title: 'Trust & Credibility', description: 'A custom schedule.hair domain signals that you are an established, elite professional.', icon: 'tabler:shield-check' },
+        { title: 'The Premium First Impression', description: 'When a client clicks "Schedule" on Google, they should see your brand, not a spreadsheet. Our vanity URLs provide instant elite status.', icon: 'tabler:sparkles' },
+        { title: 'Local Search SEO', description: 'Google prioritizes salons with high-quality, branded links. Our schedule.hair domains signal to Google that you are an established local pro.', icon: 'tabler:map-pin' },
+        { title: 'Zero Friction Booking', description: 'Our mobile-first UX is 3x faster than traditional platforms, preventing client drop-off during the booking process.', icon: 'tabler:users' },
     ]}
   >
     <Fragment slot="content">
-      <h3 class="text-3xl font-bold mb-4">Professionalism: Stand Out in a Sea of Generic Apps</h3>
-      <p class="text-lg text-muted">In the modern beauty industry, your digital handshake is your URL. We provide the polish your brand deserves.</p>
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Why your salon needs <span class="text-accent">A Professional Vanity URL ⭐⭐⭐⭐⭐</span>
+      </h3>
+      <p>Clients look at screens, not storefronts. Your URL is your digital handshake—we make sure yours is a 5-star introduction.</p>
     </Fragment>
     <Fragment slot="image">
-       <img src="/images/testimonial-4.webp" alt="Elite salon styling" class="rounded-lg shadow-xl w-full" />
+       <img src="/images/testimonial-4.webp" alt="Elite salon styling experience" class="rounded-lg shadow-xl w-full" />
     </Fragment>
   </Content>
 
-  <Pricing title="Ready to Own Your Professional Identity?" prices={[lifetimeDeal]} />
+  <Content
+    items={[
+      { title: 'Zero Maintenance', description: 'We know you’re busy with back-to-back bookings. Once we set up your vanity URL, you never have to log in or "manage" anything technical.', icon: 'tabler:settings' },
+      { title: 'White-Glove Integration', description: 'We handle the Google Business Profile link setup for you, ensuring your "Schedule" button points exactly where it should.', icon: 'tabler:stars' },
+      { title: 'One-Time Payment', description: 'We don’t believe in monthly fees that eat your profits. $99 once, and you own the system for the life of your chair.', icon: 'tabler:coin' },
+    ]}
+  >
+    <Fragment slot="content">
+      <h2 class="text-3xl font-bold tracking-tight dark:text-white sm:text-4xl mb-4">
+        Our Commitment to Your Success
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 mb-8">
+        We aren't just another software company. We are a partner in your growth. We handle the technical hurdles so you can stay focused on your art.
+      </p>
+    </Fragment>
+    <Fragment slot="image">
+      <img 
+        src="/images/testimonial-3.webp" 
+        alt="Salon professional managing a full book" 
+        class="rounded-lg shadow-xl w-full"
+      />
+    </Fragment>
+  </Content>
+
+  <Pricing
+    class="pb-0"
+    title={`<span class="text-accent dark:text-white">Invest in Your Professional Future.</span>`}
+    prices={[lifetimeDeal]}
+  />
+
+  <Hero class="-mt-16">
+    <Fragment slot="image">
+      <img 
+        src="/images/testimonial-6.webp" 
+        alt="A professional scheduling interface" 
+        class="mx-auto rounded-md w-full shadow-lg"
+        loading="lazy"
+      />
+    </Fragment>
+  </Hero>
 </Layout>
