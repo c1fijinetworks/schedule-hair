@@ -28,7 +28,6 @@ const metadata = {
     subtitle="We build your automated review engine, design your QR codes, and sync your best reviews to your site. Capture the 'post-haircut glow' and turn it into your best marketing ever!."
     actions={[
       { variant: 'primary', text: 'Claim My Lifetime Deal Today', href: '/pricing/' },
-      /* UPDATED: Pointed Hero button to howitworks anchor */
       { text: 'See How It Works', href: '#howitworks' },
     ]}
     video="/images/hero-animation.mp4" 
@@ -57,7 +56,7 @@ const metadata = {
 <Content
     class="-mt-16"
     items={[
-        { title: 'Rank Higher on Google Maps', description: 'Google prioritizes salons with frequent, fresh reviews. We help you jump to the top of the "Salons Near Me" list.', icon: 'tabler:map-pin' },
+        { title: 'Build Instant Brand Authority', description: 'A premium domain name immediately signals luxury and professionalism, making clients willing to pay higher rates for your services.', icon: 'tabler:award' },
         { title: 'Showcase Your Artistry', description: 'Automatically sync your best 5-star Google reviews into a beautiful wall of love on your website to build instant trust.', icon: 'tabler:user-check' },
         { title: 'Beat the Competition', description: 'When new clients compare shops, the one with 100+ reviews always wins. We make sure that shop is yours.', icon: 'tabler:trending-up' },
         { title: 'Voice Search Priority', description: 'Be the first name Siri and Alexa speak when someone says, "Find me the best hair colorist in town."', icon: 'tabler:microphone' },
@@ -72,7 +71,6 @@ const metadata = {
     <Fragment slot="bg"><div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div></Fragment>
   </Content>
 
-  <!-- FIXED JUMP LINK: Using explicit wrapper for howitworks -->
   <div id="howitworks" class="scroll-mt-20">
     <Steps2
       title="From Setup to 5-Stars in 24 Hours"
