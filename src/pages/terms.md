@@ -41,7 +41,7 @@ Our total liability to you for any claim arising out of or relating to these Ter
 We reserve the right to suspend or terminate our services to you at any time, without notice, for any material breach of these Terms. Sections 2, 4, 5, 6, and 8 of these Terms will survive any termination.
 
 **8. General Terms**
-*   **Governing Law:** These Terms shall be governed by the laws of [Your State/Country], without regard to its conflict of law principles.
+*   **Governing Law:** These Terms shall be governed by the laws of the State of Delaware, United States, without regard to its conflict of law principles.
 *   **Changes to Terms:** We may modify these Terms at any time. We will post the revised Terms on our website. Your continued use of our services after such changes constitutes your acceptance of the new Terms.
 *   **Entire Agreement:** These Terms constitute the entire agreement between you and Schedule Hair regarding our services.
 *   **Contact:** If you have any questions about these Terms, please contact us at https://schedule.hair/contact
