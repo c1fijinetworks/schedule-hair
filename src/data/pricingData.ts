@@ -12,7 +12,7 @@ export const lifetimeDeal = {
     { description: 'No monthly SaaS tax, ever!' },
     { description: 'White-Glove Tech Support Included' },
   ],
-  callToAction: { target: '_blank' as const, text: 'Claim 1 of 300 Lifetime Spots', href: '#', variant: 'success' },
+  callToAction: { target: '_blank' as const, text: 'Order Now Same Day', href: '#', variant: 'success' },
   hasRibbon: true,
   ribbonTitle: 'Selling Fast',
 };
