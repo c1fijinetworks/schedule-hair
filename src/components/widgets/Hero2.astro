@@ -44,7 +44,7 @@ const {
         </div>
         <div class="relative w-full">
           {video ? (
-            <div class="relative rounded-md overflow-hidden shadow-lg w-11/12 mx-auto md:ml-auto group cursor-pointer" id="video-container">
+            <div class="relative rounded-xl overflow-hidden shadow-2xl w-full md:w-11/12 mx-auto md:ml-auto group cursor-pointer" id="video-container">
                 <video id="hero-video" src={video} class="w-full h-auto object-cover block" controls playsinline preload="metadata" poster={poster || image?.src}></video>
                 <div id="play-overlay" class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-all duration-300">
                     <div class="w-20 h-20 md:w-24 md:h-24 bg-primary rounded-full flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform">
@@ -62,7 +62,7 @@ const {
                 )}
             </div>
           ) : (
-            image && ( <img src={image.src} alt={image.alt} class="w-11/12 h-auto md:ml-auto mx-auto rounded-md shadow-lg" /> )
+            image && ( <img src={image.src} alt={image.alt || 'Hero Image'} class="w-full h-auto object-cover aspect-[4/3] sm:aspect-auto sm:max-h-[60vh] md:w-11/12 md:max-h-[70vh] md:ml-auto mx-auto rounded-xl shadow-2xl" /> )
           )}
         </div>
       </div>
