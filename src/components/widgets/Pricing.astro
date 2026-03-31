@@ -1,6 +1,5 @@
 ---
 import { Icon } from 'astro-icon/components';
-import Button from '~/components/ui/Button.astro';
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import type { Price } from '~/types';
@@ -15,16 +14,26 @@ const { title, subtitle, tagline, prices = [], classes = {}, ...rest } = Astro.p
     {prices.map((price) => (
       <div class="relative overflow-visible flex flex-col rounded-xl border-2 border-blue-600 p-8 text-center shadow-2xl w-full max-w-lg bg-white dark:bg-slate-900">
         
+        {/* Scarcity Ribbon */}
+        {price.hasRibbon && price.ribbonTitle && (
+          <div class="absolute right-[-5px] 2xl:right-[-8px] rtl:right-auto rtl:left-[-8px] rtl:2xl:left-[-10px] top-[-5px] 2xl:top-[-10px] z-[1] h-[100px] w-[100px] overflow-hidden text-right">
+            <span class="absolute top-[19px] right-[-21px] rtl:right-auto rtl:left-[-21px] block w-full rotate-45 rtl:-rotate-45 bg-red-600 text-center text-[10px] font-bold uppercase leading-5 text-white shadow-[0_3px_10px_-5px_rgba(0,0,0,0.3)] before:absolute before:left-0 before:top-full before:z-[-1] before:border-[3px] before:border-r-transparent before:border-b-transparent before:border-l-red-800 before:border-t-red-800 after:absolute after:right-0 after:top-full after:z-[-1] after:border-[3px] after:border-l-transparent after:border-b-transparent after:border-r-red-800 after:border-t-red-800 content-['']">{price.ribbonTitle}</span>
+          </div>
+        )}
+
         <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-6 py-1 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
             Guaranteed Same-Day Setup
         </div>
 
         <h3 class="text-3xl font-black text-slate-900 dark:text-white mt-4">{price.title}</h3>
         
+        {/* We added set:html here to render the bold red text */}
+        {price.subtitle && <p class="mt-4 text-muted leading-relaxed" set:html={price.subtitle}></p>}
+        
         <div class="mt-8 flex-1">
           <div class="flex items-end justify-center">
-            <span class="text-6xl font-black tracking-tighter text-blue-600">$99</span>
-            <span class="ml-2 text-lg font-bold text-slate-500 uppercase">one-time</span>
+            <span class="text-6xl font-black tracking-tighter text-blue-600">${price.price}</span>
+            <span class="ml-2 text-lg font-bold text-slate-500 uppercase">{price.period}</span>
           </div>
           
           <ul role="list" class="mt-8 space-y-4 text-left border-t border-slate-100 pt-8 dark:border-slate-800">
@@ -89,8 +98,9 @@ const { title, subtitle, tagline, prices = [], classes = {}, ...rest } = Astro.p
               />
             </div>
 
-            <button type="submit" class="w-full py-5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-200 text-xl uppercase tracking-tighter">
-              Secure My URL Today
+            {/* Enhanced Call To Action button style to drive impulse */}
+            <button type="submit" class="w-full py-5 px-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-200 text-xl uppercase tracking-tighter">
+              {price.callToAction?.text || 'Claim 1 of 300 Spots Today'}
             </button>
             
             <div class="flex items-center justify-center gap-2 mt-6 text-slate-400">
